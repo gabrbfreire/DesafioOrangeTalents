@@ -1,12 +1,21 @@
 package com.desafio.controller.form;
 
 import com.desafio.model.Account;
+import com.sun.istack.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 public class AccountForm {
 
+    @NotNull @NotEmpty
     private String name;
+    @NotNull @NotEmpty @Email
     private String email;
+    @CPF
     private String cpf;
+    @NotNull @NotEmpty @DateTimeFormat
     private String birthday;
 
     public String getName() {
