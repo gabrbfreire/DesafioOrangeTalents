@@ -37,7 +37,7 @@ public class AccountService {
         return formErrorDtos;
     }
 
-    public void formatCpf(AccountForm accountForm){
+    private void formatCpf(AccountForm accountForm){
         // Removes all non numeric characters from CPF
         accountForm.setCpf(accountForm.getCpf().replaceAll("[^\\d]", ""));
     }
