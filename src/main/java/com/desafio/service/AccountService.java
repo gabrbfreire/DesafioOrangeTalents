@@ -24,6 +24,8 @@ public class AccountService {
     }
 
     public List<FormErrorDto> checkCpfAndEmail(AccountForm accountForm){
+        formatCpf(accountForm);
+
         List<FormErrorDto> formErrorDtos = new ArrayList<>();
 
         if(accountRepository.getAccountByCpf(accountForm.getCpf()) != null){
@@ -33,5 +35,10 @@ public class AccountService {
             formErrorDtos.add(new FormErrorDto("e-mail","E-mail already exists"));
         }
         return formErrorDtos;
+    }
+
+    public void formatCpf(AccountForm accountForm){
+        // Removes all non numeric characters from CPF
+        accountForm.setCpf(accountForm.getCpf().replaceAll("[^\\d]", ""));
     }
 }
