@@ -5,6 +5,7 @@ import com.desafio.controller.dto.AccountDto;
 import com.desafio.controller.form.AccountForm;
 import com.desafio.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +33,7 @@ public class AccountController {
             URI uri = uriBuilder.path("/client/{id}").buildAndExpand(accountDto.getId()).toUri();
             return ResponseEntity.created(uri).body(accountDto);
         }else {
-            return ResponseEntity.badRequest().body(formErrorDtos);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(formErrorDtos);
         }
     }
 }
