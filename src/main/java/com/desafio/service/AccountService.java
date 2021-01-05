@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -40,5 +41,13 @@ public class AccountService {
     private void formatCpf(AccountForm accountForm){
         // Removes all non numeric characters from CPF
         accountForm.setCpf(accountForm.getCpf().replaceAll("[^\\d]", ""));
+    }
+
+    public AccountDto getAccountById(Long id){
+        Optional<Account> optionalAccount= accountRepository.findById(id);
+        if(optionalAccount.isPresent()){
+            return new AccountDto(optionalAccount.get());
+        }
+        return null;
     }
 }
