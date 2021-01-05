@@ -22,7 +22,7 @@ public class AccountController {
     AccountService accountService;
 
     @PostMapping
-    public ResponseEntity createNewClient(@RequestBody @Valid AccountForm accountForm, UriComponentsBuilder uriBuilder){
+    public ResponseEntity createNewAccount(@RequestBody @Valid AccountForm accountForm, UriComponentsBuilder uriBuilder){
         List<FormErrorDto> formErrorDtos = accountService.checkCpfAndEmail(accountForm);
 
         if(formErrorDtos.isEmpty()){ //If formErrorDtos is empty the are no duplicate CPFs or Emails
@@ -35,12 +35,22 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getClientById(@PathVariable Long id){
+    public ResponseEntity getAccountsById(@PathVariable Long id){
         AccountDto accountDto = accountService.getAccountById(id);
 
         if(accountDto != null){
             return ResponseEntity.ok().body(accountDto);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found");
+    }
+
+    @GetMapping
+    public ResponseEntity getAllAccounts(){
+        List<AccountDto> accountDtos = accountService.getAllAccounts();
+
+        if(!accountDtos.isEmpty()){
+            return ResponseEntity.ok().body(accountDtos);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No accounts found");
     }
 }

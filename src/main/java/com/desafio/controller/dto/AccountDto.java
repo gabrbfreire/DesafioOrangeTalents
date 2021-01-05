@@ -2,13 +2,15 @@ package com.desafio.controller.dto;
 
 import com.desafio.model.Account;
 
+import java.util.Date;
+
 public class AccountDto {
 
     private Long id;
     private String name;
     private String email;
     private String cpf;
-    private String birthday;
+    private Date birthday;
 
     public AccountDto(Account account) {
         this.id = account.getId();
@@ -50,11 +52,11 @@ public class AccountDto {
         this.cpf = cpf;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 }

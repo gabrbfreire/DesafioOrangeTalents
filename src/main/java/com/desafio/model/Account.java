@@ -1,6 +1,7 @@
 package com.desafio.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Account {
@@ -11,11 +12,11 @@ public class Account {
     private String name;
     private String email;
     private String cpf;
-    private String birthday;
+    private Date birthday;
 
     public Account(){}
 
-    public Account(String name, String email, String cpf, String birthday){
+    public Account(String name, String email, String cpf, Date birthday){
         this.name = name;
         this.email = email;
         this.cpf = cpf;
@@ -54,11 +55,11 @@ public class Account {
         this.cpf = cpf;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 }

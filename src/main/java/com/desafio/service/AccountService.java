@@ -50,4 +50,15 @@ public class AccountService {
         }
         return null;
     }
+
+    public List<AccountDto> getAllAccounts(){
+        List<Account> accountList = accountRepository.findAll();
+        List<AccountDto> accountDtos  = new ArrayList<>();
+
+        accountList.forEach(account -> {
+            accountDtos.add(new AccountDto(account));
+        });
+
+        return accountDtos;
+    }
 }
