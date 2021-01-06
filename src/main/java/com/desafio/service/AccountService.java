@@ -8,7 +8,6 @@ import com.desafio.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +58,6 @@ public class AccountService {
         accountList.forEach(account -> {
             accountDtos.add(new AccountDto(account));
         });
-
         return accountDtos;
     }
 }

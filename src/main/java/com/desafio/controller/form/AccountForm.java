@@ -4,10 +4,8 @@ import com.desafio.model.Account;
 import com.sun.istack.NotNull;
 import org.apache.commons.validator.GenericValidator;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -55,7 +53,6 @@ public class AccountForm {
     }
 
     public Account convert() throws MethodArgumentNotValidException {
-        System.out.println(GenericValidator.isDate(birthday, "dd/MM/yyyy", true));
         if(GenericValidator.isDate(birthday, "dd/MM/yyyy", true)){
             return new Account(name, email, cpf, birthday);
         }

@@ -1,7 +1,6 @@
 package com.desafio.model;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Account {
