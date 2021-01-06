@@ -1,8 +1,8 @@
 package com.desafio.controller.dto;
 
 import com.desafio.model.Account;
-
-import java.util.Date;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 
 public class AccountDto {
 
@@ -10,13 +10,15 @@ public class AccountDto {
     private String name;
     private String email;
     private String cpf;
-    private Date birthday;
+    private String birthday;
 
     public AccountDto(Account account) {
         this.id = account.getId();
         this.name = account.getName();
         this.email = account.getEmail();
         this.cpf = account.getCpf();
+
+        //Format formatter = new SimpleDateFormat("dd/MM/yyyy");
         this.birthday = account.getBirthday();
     }
 
@@ -52,11 +54,11 @@ public class AccountDto {
         this.cpf = cpf;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 }

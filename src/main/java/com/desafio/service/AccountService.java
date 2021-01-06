@@ -7,6 +7,7 @@ import com.desafio.model.Account;
 import com.desafio.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class AccountService {
     @Autowired
     AccountRepository accountRepository;
 
-    public AccountDto save(AccountForm accountForm){
+    public AccountDto save(AccountForm accountForm) throws MethodArgumentNotValidException {
         Account account = accountForm.convert();
         accountRepository.save(account);
         return new AccountDto(account);

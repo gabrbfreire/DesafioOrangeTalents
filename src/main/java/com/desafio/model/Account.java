@@ -12,11 +12,11 @@ public class Account {
     private String name;
     private String email;
     private String cpf;
-    private Date birthday;
+    private String birthday;
 
     public Account(){}
 
-    public Account(String name, String email, String cpf, Date birthday){
+    public Account(String name, String email, String cpf, String birthday){
         this.name = name;
         this.email = email;
         this.cpf = cpf;
@@ -55,11 +55,11 @@ public class Account {
         this.cpf = cpf;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 }

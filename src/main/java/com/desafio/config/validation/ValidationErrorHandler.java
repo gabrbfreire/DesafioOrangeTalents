@@ -26,10 +26,15 @@ public class ValidationErrorHandler {
         List<FormErrorDto> formErrorDtos = new ArrayList<>();
 
         List<FieldError> fieldErrors = methodException.getBindingResult().getFieldErrors();
-        fieldErrors.forEach(e ->{
-            FormErrorDto errorDto = new FormErrorDto(e.getField(), messageSource.getMessage(e, LocaleContextHolder.getLocale()));
-            formErrorDtos.add(errorDto);
-        });
+
+        if(fieldErrors.isEmpty()){
+            formErrorDtos.add(new FormErrorDto("birthday","Invalid birthday date"));
+        }else {
+            fieldErrors.forEach(e -> {
+                FormErrorDto errorDto = new FormErrorDto(e.getField(), messageSource.getMessage(e, LocaleContextHolder.getLocale()));
+                formErrorDtos.add(errorDto);
+            });
+        }
 
         return formErrorDtos;
     }

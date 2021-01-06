@@ -7,6 +7,7 @@ import com.desafio.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -22,7 +23,7 @@ public class AccountController {
     AccountService accountService;
 
     @PostMapping
-    public ResponseEntity createNewAccount(@RequestBody @Valid AccountForm accountForm, UriComponentsBuilder uriBuilder){
+    public ResponseEntity createNewAccount(@RequestBody @Valid AccountForm accountForm, UriComponentsBuilder uriBuilder) throws MethodArgumentNotValidException {
         List<FormErrorDto> formErrorDtos = accountService.checkCpfAndEmail(accountForm);
 
         if(formErrorDtos.isEmpty()){ //If formErrorDtos is empty the are no duplicate CPFs or Emails

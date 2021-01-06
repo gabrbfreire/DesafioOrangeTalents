@@ -1,15 +1,15 @@
 package com.desafio.controller.form;
 
 import com.desafio.model.Account;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
+import org.apache.commons.validator.GenericValidator;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Past;
-import java.util.Date;
 
 public class AccountForm {
 
@@ -19,9 +19,8 @@ public class AccountForm {
     private String email;
     @NotNull @NotEmpty @CPF
     private String cpf;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "dd/MM/yyyy")
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date birthday;
+    @NotNull @NotEmpty
+    private String birthday;
 
     public String getName() {
         return name;
@@ -47,15 +46,19 @@ public class AccountForm {
         this.cpf = cpf;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public Account convert() {
-        return new Account(name, email, cpf, birthday);
+    public Account convert() throws MethodArgumentNotValidException {
+        System.out.println(GenericValidator.isDate(birthday, "dd/MM/yyyy", true));
+        if(GenericValidator.isDate(birthday, "dd/MM/yyyy", true)){
+            return new Account(name, email, cpf, birthday);
+        }
+        throw new MethodArgumentNotValidException(null, new BindException(new Object(),""));
     }
 }
